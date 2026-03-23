@@ -1,11 +1,10 @@
 version: 1.0
-runtime: python3
+runtime: python311
 build:
   commands:
     build:
       - python -m pip install --no-cache-dir -r requirements.txt
 run:
-  runtime-version: 3.11
   command: gunicorn --bind 0.0.0.0:$PORT server:app
   network:
     port: 8080
