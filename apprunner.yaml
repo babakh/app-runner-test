@@ -7,7 +7,7 @@ build:
     post-build:
       - python3 -c "import gunicorn, flask, server; print('imports ok')"
 run:
-  command: python3 -m gunicorn --bind 0.0.0.0:8080 server:app
+  command: python3 server.py
   network:
     port: 8080
   env:
