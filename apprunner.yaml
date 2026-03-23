@@ -3,9 +3,10 @@ runtime: python311
 build:
   commands:
     build:
-      - python3 -m pip install --no-cache-dir -r requirements.txt
+      - python3 -m pip install --no-cache-dir --target /app -r requirements.txt
     post-build:
-      - python3 -c "import gunicorn, flask, server; print('imports ok')"
+      - python3 -c "import sys; print('sys.path=', sys.path)"
+      - python3 -c "import flask, server; print('imports ok')"
 run:
   command: python3 server.py
   network:
