@@ -6,9 +6,9 @@ build:
       - python3 -m pip install --no-cache-dir --target /app -r requirements.txt
     post-build:
       - python3 -c "import sys; print('sys.path=', sys.path)"
-      - python3 -c "import flask, server; print('imports ok')"
+      - python3 -c "import flask, gunicorn, server; print('imports ok')"
 run:
-  command: python3 server.py
+  command: python3 -m gunicorn --bind 0.0.0.0:8080 --workers 2 --threads 4 --timeout 120 server:app
   network:
     port: 8080
   env:
